@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 import datetime
 import urllib2
 import sys
-def send_email(self):
+def send_email(gmail_user, smtpserver, extipaddr):
 	my_ip = 'Hello this is Spaa...err, i mean ayumi, here is my new external address: %s',  extipaddr
 	msg = MIMEText(my_ip)
 	msg['Subject'] = 'You won! (ou pas...)' % today.strftime('%b %d %Y')
@@ -47,7 +47,7 @@ try:
 				file.seek(0)
 				file.write(extipaddr)
 				file.truncate()
-				send_email()
+				send_email(gmail_user, smtpserver, extipaddr)
 		
 		else:
 			print 'This is not an IpV4!'
