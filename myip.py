@@ -30,15 +30,17 @@ today = datetime.date.today()
 extipaddr = urllib2.urlopen("http://icanhazip.com").read()
 splitextipaddr = extipaddr.split('.')
 assert splitextipaddr == 4, "External service is broken, try again later"
-if int(splitextipaddr[0] not in range(0, 255) or int(splitextipaddr[1]) not in range(0, 255) or int(splitextipaddr[2]) not in range(0, 255) or int(splitextipaddr[3]) not in range(0, 255):
+myrange = range(0,255)
+if int(splitextipaddr[0] not in myrange or int(splitextipaddr[1]) not in myrange or int(splitextipaddr[2]) not in myrange or int(splitextipaddr[3]) not in myrange:
 	print 'External service is broken, try again later'
 	sys.exit(1)
 try:
+        
 	with open('myip', r+) as file:
 		lastipfromfile = file.read()
 		splitlastipfromfile = lastipfromfile.split('.')
 		assert len(splitlastipfromfile) == 4, "Ip lenght is wrong: %r" % splitlastipfromfile
-		if int(splitlastipfromfile[0]) in range(0, 255) and int(splitlastipfromfile[1]) in range(0, 255) and int(splitlastipfromfile[2]) in range(0, 255) and int(splitlastipfromfile[3]) in range(0, 255):
+		if int(splitlastipfromfile[0]) in myrange and int(splitlastipfromfile[1]) in myrange and int(splitlastipfromfile[2]) in myrange and int(splitlastipfromfile[3]) in myrange:
 			print 'last ip is ok'
 			if lastipfromfile == extipaddr:
 				print 'nothing to do'
